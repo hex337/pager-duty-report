@@ -15,15 +15,19 @@ defmodule PagerDutyReport.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :eex],
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      { :envy, "~> 1.1.1" },
+      { :httpoison, "~> 1.5" },
       { :progress_bar, "> 0.0.0" },
-      { :poison, "~> 3.1" }
+      { :poison, "~> 3.1" },
+      { :timex, "~> 3.1" },
+      { :tzdata, "~> 0.1.8", override: true }
     ]
   end
 end

@@ -1,19 +1,12 @@
 # PagerDutyReport
 
-**TODO: Add description**
+This is a script to print out an on-call summary from pager duty.
 
-## Installation
+## How to Run
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `pager_duty_report` to your list of dependencies in `mix.exs`:
+Make sure you set up your .env with the example provided. You'll need a PagerDuty api key.
 
-```elixir
-def deps do
-  [
-    {:pager_duty_report, "~> 0.1.0"}
-  ]
-end
-```
+To run, just invoke `./pager_duty_report`
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
