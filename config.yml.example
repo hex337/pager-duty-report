@@ -1,0 +1,6 @@
+service_ids:
+  - U12345
+  - P54321
+timezone: "US/Pacific"
+start_of_day: 7
+start_of_night: 22

@@ -29,6 +29,11 @@ defmodule PagerDutyReport.Parsers.PagerDutyParser do
     convert_urgency(urgency)
   end
 
+  def extract(:id, incident) do
+    %{"id" => id} = incident
+    id
+  end
+
   defp convert_urgency(urgency) when urgency == "high", do: "H"
   defp convert_urgency(urgency) when urgency == "low", do: "L"
 

@@ -15,7 +15,7 @@ defmodule PagerDutyReport.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :eex],
+      extra_applications: [:logger, :eex, :yaml_elixir],
     ]
   end
 
@@ -27,7 +27,8 @@ defmodule PagerDutyReport.MixProject do
       { :progress_bar, "> 0.0.0" },
       { :poison, "~> 3.1" },
       { :timex, "~> 3.1" },
-      { :tzdata, "~> 0.1.8", override: true }
+      { :tzdata, "~> 0.1.8", override: true },
+      { :yaml_elixir, "~> 2.2" }
     ]
   end
 end

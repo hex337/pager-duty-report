@@ -23,3 +23,4 @@ erl_crash.dump
 pager_duty_report-*.tar
 
 .env
+config.yml

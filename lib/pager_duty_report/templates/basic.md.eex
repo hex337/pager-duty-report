@@ -21,24 +21,19 @@ To: <%= Timex.format(until, format, :strftime) |> elem(1) %>
 <%= for {group_date, dated_incidents} <- incidents_by_date do %>
   **<%= group_date %>**
   <%= for incident <- dated_incidents do %>
-    * <%= elem(Timex.format(incident[:created_at], format, :strftime), 1) %> <%= incident[:urgency] %> [<%= incident[:title] %>](<%= incident[:url] %>)
+    * <%= elem(Timex.format(incident[:created_at], format, :strftime), 1) %> <%= incident[:urgency] %> [<%= incident[:id] %>](<%= incident[:url] %>) <%= incident[:title] %>
   <% end %>
+
 <% end %>
 
 # Statistics:
 
-* Total number of pages: {{statistics.total}}
+* Total number of pages: <%= stats[:total_incidents] %>
 * Hourly histogram: {{statistics.hourlyHistogram}}
-* Total number of hours with pages: {{statistics.affectedHours}}
+* Total number of hours with pages: <%= stats[:affected_hours] %>
 * Incidents by timeframe:
-  {{#statistics.dayTimePages}}
-  * day (07:00-23:00): {{statistics.dayTimePages}}
-  {{/statistics.dayTimePages}}
-  {{#statistics.nightTimePages}}
-  * night (23:01-06:59): {{statistics.nightTimePages}}
-  {{/statistics.nightTimePages}}
-* Hours Worked: _[Total Hours Worked]_
-  * _[Person]_: _[Hours]_
+  * day (<%= start_of_day %>:00-<%= start_of_night %>:00): <%= stats[:day_time_pages] %>
+  * night (<%= start_of_night %>:01-<%= start_of_day - 1 %>:59): <%= stats[:night_time_pages] %>
 
 # Changes Made:
 
