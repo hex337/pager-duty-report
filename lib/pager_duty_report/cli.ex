@@ -46,9 +46,9 @@ defmodule PagerDutyReport.CLI do
       start_of_night: start_of_night(config)
     ]
 
-    template_name = get_template_name()
+    template_name = get_template_name(config)
 
-    IO.puts generate_output(template_params, template_name)
+    IO.puts generate_output(template_params, template_name, config)
   end
 
   defp parse_config() do
@@ -71,6 +71,10 @@ defmodule PagerDutyReport.CLI do
     Map.get(config, "service_ids", [])
   end
 
+  defp get_template_type(config) do
+    Map.get(config, "template_type", "md")
+  end
+
   defp get_since_until(config) do
     default_until_time = Timex.beginning_of_week(Timex.now, :tue) |> Timex.shift(hours: 10)
     default_since_time = Timex.shift(default_until_time, days: -7)
@@ -81,7 +85,7 @@ defmodule PagerDutyReport.CLI do
     }
   end
 
-  defp get_template_name() do
+  defp get_template_name(config) do
     "basic"
   end
 
@@ -164,8 +168,8 @@ defmodule PagerDutyReport.CLI do
     Map.get(config, "start_of_night", 21) # Default is 9pm
   end
 
-  defp generate_output(params, template_name) do
-    file_path = "lib/pager_duty_report/templates/#{template_name}.md.eex"
+  defp generate_output(params, template_name, config) do
+    file_path = "lib/pager_duty_report/templates/#{template_name}.#{get_template_type(config)}.eex"
     EEx.eval_file(file_path, params, [trim: true])
   end
 end

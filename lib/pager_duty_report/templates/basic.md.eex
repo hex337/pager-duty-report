@@ -3,7 +3,6 @@
 # Team: Platform
 
 From: <%= Timex.format(since, format, :strftime) |> elem(1) %>
-
 To: <%= Timex.format(until, format, :strftime) |> elem(1) %>
 
 ## Oncall Engineers:
@@ -19,9 +18,9 @@ To: <%= Timex.format(until, format, :strftime) |> elem(1) %>
 # Incidents:
 
 <%= for {group_date, dated_incidents} <- incidents_by_date do %>
-  **<%= group_date %>**
+**<%= group_date %>**
   <%= for incident <- dated_incidents do %>
-    * <%= elem(Timex.format(incident[:created_at], format, :strftime), 1) %> <%= incident[:urgency] %> [<%= incident[:id] %>](<%= incident[:url] %>) <%= incident[:title] %>
+  * <%= elem(Timex.format(incident[:created_at], format, :strftime), 1) %> <%= incident[:urgency] %> [<%= incident[:id] %>](<%= incident[:url] %>) <%= incident[:title] %>
   <% end %>
 
 <% end %>

@@ -12,6 +12,13 @@ PAGER_DUTY_TOKEN=token_value_here
 
 You can also optionally set up a configuration yml file to set things like the service ids that you want to report on, and configure the timezone and definition of start of day and end of day for day/night page reporting. See the `config.yml.example` file as an example.
 
+Configuration settings:
+  * *service_ids*: An array of services to pull incidents from
+  * *timezone*: A string for the timezone to query PagerDuty in
+  * *start_of_day*: An integer to set when the day starts (for stats collecting)
+  * *end_of_day*: An integer to set when the night starts (for stats collecting)
+  * *template_type*: A string, either "md" or "wiki" that specifies the template format type
+
 ## Compiling Executable
 
 To build a new executable, run `mix escript.build`.

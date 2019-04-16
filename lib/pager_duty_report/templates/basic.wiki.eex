@@ -1,0 +1,41 @@
+<% format = "%Y-%m-%d %H:%M:%S" %>
+
+h2. Team: Platform
+
+From: <%= Timex.format(since, format, :strftime) |> elem(1) %>
+To: <%= Timex.format(until, format, :strftime) |> elem(1) %>
+
+h3. Oncall Engineers:
+
+* Triage: _Triage Engineer_
+* Escalation: _Escalation Engineer_
+
+h3. Pain Index:
+
+* Triage: _Triage Pain Index_
+* Escalation: _Escalation Pain Index_
+
+h2. Incidents:
+
+<%= for {group_date, dated_incidents} <- incidents_by_date do %>
+*<%= group_date %>*
+  <%= for incident <- dated_incidents do %>
+* <%= elem(Timex.format(incident[:created_at], format, :strftime), 1) %> <%= incident[:urgency] %> [[<%= incident[:id] %>|<%= incident[:url] %>]] <%= incident[:title] %>
+  <% end %>
+
+<% end %>
+
+h2. Statistics:
+
+* Total number of pages: <%= stats[:total_incidents] %>
+* Incidents by timeframe:
+** day (<%= start_of_day %>:00-<%= start_of_night %>:00): <%= stats[:day_time_pages] %>
+** night (<%= start_of_night %>:01-<%= start_of_day - 1 %>:59): <%= stats[:night_time_pages] %>
+
+h2. Changes Made:
+
+* 
+
+h2. Tasks To Do:
+
+* 

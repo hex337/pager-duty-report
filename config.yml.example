@@ -4,3 +4,4 @@ service_ids:
 timezone: "US/Pacific"
 start_of_day: 7
 start_of_night: 22
+template_type: "md"
